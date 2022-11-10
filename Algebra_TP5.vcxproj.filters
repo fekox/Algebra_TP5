@@ -19,7 +19,7 @@
     <ClCompile Include="src\Window\PlayGame.cpp">
       <Filter>Source Files\Window</Filter>
     </ClCompile>
-    <ClCompile Include="src\Objects\WhiteBall.cpp">
+    <ClCompile Include="src\Objects\Ball.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\Utils.cpp">
@@ -28,18 +28,24 @@
     <ClCompile Include="src\Window\InputManager.cpp">
       <Filter>Source Files\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\Window\CollisionManager.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Window\PlayGame.h">
       <Filter>Source Files\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\Objects\WhiteBall.h">
+    <ClInclude Include="src\Objects\Ball.h">
       <Filter>Source Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="src\Utils.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Window\InputManager.h">
+      <Filter>Source Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\CollisionManager.h">
       <Filter>Source Files\Window</Filter>
     </ClInclude>
   </ItemGroup>

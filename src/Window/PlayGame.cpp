@@ -1,8 +1,9 @@
 #include "raylib.h"
 #include "Window/PlayGame.h"
-#include "Objects/WhiteBall.h"
+#include "Objects/Ball.h"
 
 #include "InputManager.h"
+#include "CollisionManager.h"
 
 //Window
 int screenWidth = 1024;
@@ -68,6 +69,8 @@ void Update()
 	while (!WindowShouldClose())
 	{
 		Input::Manage(mainBall);
+
+		Collision::BallCollision(maxBalls, mainBall, balls);
 
 		UpdateBall(mainBall);
 

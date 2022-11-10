@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Objects/WhiteBall.h"
+#include "Objects/Ball.h"
 
 namespace Input {
 	void Manage(Ball& whiteBall);

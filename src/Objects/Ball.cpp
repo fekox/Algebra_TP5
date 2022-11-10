@@ -1,4 +1,4 @@
-#include "Objects/WhiteBall.h"
+#include "Objects/Ball.h"
 
 #include "Utils.h"
 
