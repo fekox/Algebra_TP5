@@ -5,27 +5,30 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\Pool">
-      <UniqueIdentifier>{35ce4910-0b82-46b7-ae99-28b786498333}</UniqueIdentifier>
+    <Filter Include="Source Files\Window">
+      <UniqueIdentifier>{440f9c89-697a-4d53-82ee-d56b81e665fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{a363aac8-a423-4c0d-b559-12ddc1bfde48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\game.cpp">
-      <Filter>Source Files\Pool</Filter>
+    <ClCompile Include="src\Window\PlayGame.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Objects\WhiteBall.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ball.h">
-      <Filter>Source Files\Pool</Filter>
+    <ClInclude Include="src\Window\PlayGame.h">
+      <Filter>Source Files\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\game.h">
-      <Filter>Source Files\Pool</Filter>
-    </ClInclude>
-    <ClInclude Include="src\collisionManager.h">
-      <Filter>Source Files\Pool</Filter>
+    <ClInclude Include="src\Objects\WhiteBall.h">
+      <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
