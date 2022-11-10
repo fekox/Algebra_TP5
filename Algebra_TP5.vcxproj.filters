@@ -22,6 +22,12 @@
     <ClCompile Include="src\Objects\WhiteBall.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Window\InputManager.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Window\PlayGame.h">
@@ -29,6 +35,12 @@
     </ClInclude>
     <ClInclude Include="src\Objects\WhiteBall.h">
       <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\InputManager.h">
+      <Filter>Source Files\Window</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

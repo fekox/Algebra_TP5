@@ -2,6 +2,8 @@
 #include "Window/PlayGame.h"
 #include "Objects/WhiteBall.h"
 
+#include "InputManager.h"
+
 //Window
 int screenWidth = 1024;
 int screenHeight = 768;
@@ -65,6 +67,10 @@ void Update()
 {
 	while (!WindowShouldClose())
 	{
+		Input::Manage(mainBall);
+
+		UpdateBall(mainBall);
+
 		Draw();
 	}
 

@@ -21,10 +21,14 @@
   <ItemGroup>
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Objects\WhiteBall.cpp" />
+    <ClCompile Include="src\Utils.cpp" />
+    <ClCompile Include="src\Window\InputManager.cpp" />
     <ClCompile Include="src\Window\PlayGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Objects\WhiteBall.h" />
+    <ClInclude Include="src\Utils.h" />
+    <ClInclude Include="src\Window\InputManager.h" />
     <ClInclude Include="src\Window\PlayGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
