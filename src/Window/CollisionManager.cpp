@@ -13,6 +13,7 @@ namespace Collision
 			if (CircleCircleCollision(mainBall.pos, mainBall.radius, balls[i].pos, balls[i].radius))
 			{
 				cout << "Colision between Main Ball and ball " << i << "!" << endl;
+				HandleBallBallBounce(mainBall, balls[i]);
 			}
 		}
 

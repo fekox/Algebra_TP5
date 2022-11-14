@@ -56,6 +56,13 @@ Ball CreateBall()
 	return mainBall;
 }
 
+void HandleBallBallBounce(Ball& ball1, Ball& ball2) {
+	Vector2 targetVector = Utils::GetTargetVector(ball1.pos, ball2.pos);
+	Vector2 directionVector = ball1.acceleration;
+	float angle = Utils::RadiansToDegrees(Utils::GetAngle(targetVector, directionVector, ball2.pos));
+	cout << "Collision angle: " << angle << endl;
+}
+
 void ShootBall(Ball& ball, Vector2 target) {
 	Vector2 vectorDir = Utils::GetTargetVector(ball.pos, target);
 	Vector2 normalizedDir;

@@ -14,6 +14,8 @@ struct Ball
 
 Ball CreateBall();
 
+void HandleBallBallBounce(Ball& ball1, Ball& ball2);
+
 void ShootBall(Ball& ball, Vector2 target);
 
 void UpdateBall(Ball& ball);
