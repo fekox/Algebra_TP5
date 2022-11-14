@@ -13,26 +13,28 @@ void HandleBounce(Ball& ball);
 
 // --
 
+extern Rectangle Table;
+
 void Move(Ball& ball) {
 	ball.pos.x += (ball.acceleration.x * GetFrameTime()) * 200.0f;
 	ball.pos.y += (ball.acceleration.y * GetFrameTime()) * 200.0f;
 }
 
 void HandleBounce(Ball& ball) {
-	if (ball.pos.x - ball.radius <= 0) {
-		ball.pos.x = ball.radius + 1;
+	if (ball.pos.x - ball.radius <= Table.x) {
+		ball.pos.x = ball.radius + Table.x + 1;
 		ball.acceleration.x = -ball.acceleration.x;
 	}
-	if (ball.pos.x + ball.radius >= GetScreenWidth()) {
-		ball.pos.x = GetScreenWidth() - ball.radius - 1;
+	if (ball.pos.x + ball.radius >= Table.x + Table.width) {
+		ball.pos.x = Table.x + Table.width - ball.radius - 1;
 		ball.acceleration.x = -ball.acceleration.x;
 	}
-	if (ball.pos.y - ball.radius <= 0) {
-		ball.pos.y = ball.radius + 1;
+	if (ball.pos.y - ball.radius <= Table.y) {
+		ball.pos.y = ball.radius + Table.y + 1;
 		ball.acceleration.y = -ball.acceleration.y;
 	}
-	if (ball.pos.y + ball.radius >= GetScreenHeight()) {
-		ball.pos.y = GetScreenHeight() - ball.radius - 1;
+	if (ball.pos.y + ball.radius >= Table.y + Table.height) {
+		ball.pos.y = Table.y + Table.height - ball.radius - 1;
 		ball.acceleration.y = -ball.acceleration.y;
 	}
 }
@@ -72,6 +74,29 @@ void ShootBall(Ball& ball, Vector2 target) {
 	ball.acceleration.x += (normalizedDir.x * GetFrameTime()) * Utils::GetDistance(ball.pos, target);
 	ball.acceleration.y += (normalizedDir.y * GetFrameTime()) * Utils::GetDistance(ball.pos, target);
 	cout << "shot\n";
+
+	if (ball.acceleration.x > 6.0f)
+	{
+		ball.acceleration.x = 6.0f;
+	}
+
+	if (ball.acceleration.y > 6.0f)
+	{
+		ball.acceleration.y = 6.0f;
+	}
+
+	if (ball.acceleration.x < -6.0f)
+	{
+		ball.acceleration.x = -6.0f;
+	}
+
+	if (ball.acceleration.y < -6.0f)
+	{
+		ball.acceleration.y = -6.0f;
+	}
+
+	cout << "X: " << ball.acceleration.x << endl;
+	cout << "Y: " << ball.acceleration.x << endl;
 }
 
 void UpdateBall(Ball& ball) {

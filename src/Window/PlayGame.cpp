@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "Window/PlayGame.h"
 #include "Objects/Ball.h"
+#include "Objects/Table.h"
 
 #include "InputManager.h"
 #include "CollisionManager.h"
@@ -26,6 +27,7 @@ void Init()
 {
 	//Window
 	InitWindow(screenWidth, screenHeight, "Algebra TP5");
+	initTable();
 	
 	//White Ball
 	mainBall = CreateBall();
@@ -84,6 +86,7 @@ void Draw()
 {
 	BeginDrawing();
 	ClearBackground(BLANK);
+	DrawTable();
 
 	//White Ball
 	DrawBall(mainBall);

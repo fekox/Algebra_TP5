@@ -31,6 +31,9 @@
     <ClCompile Include="src\Window\CollisionManager.cpp">
       <Filter>Source Files\Window</Filter>
     </ClCompile>
+    <ClCompile Include="src\Objects\Table.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Window\PlayGame.h">
@@ -47,6 +50,9 @@
     </ClInclude>
     <ClInclude Include="src\Window\CollisionManager.h">
       <Filter>Source Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Objects\Table.h">
+      <Filter>Source Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

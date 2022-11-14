@@ -3,6 +3,13 @@
 #include "raylib.h"
 
 namespace Utils {
+
+	struct Circle
+	{
+		Vector2 pos;
+		float Radius;
+	};
+
 	float GetAngle(Vector2 v1, Vector2 v2, Vector2 center);
 	float DegreesToRadians(float deg);
 	float RadiansToDegrees(float rad);

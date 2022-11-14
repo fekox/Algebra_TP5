@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Objects\Ball.cpp" />
+    <ClCompile Include="src\Objects\Table.cpp" />
     <ClCompile Include="src\Utils.cpp" />
     <ClCompile Include="src\Window\CollisionManager.cpp" />
     <ClCompile Include="src\Window\InputManager.cpp" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Objects\Ball.h" />
+    <ClInclude Include="src\Objects\Table.h" />
     <ClInclude Include="src\Utils.h" />
     <ClInclude Include="src\Window\CollisionManager.h" />
     <ClInclude Include="src\Window\InputManager.h" />
