@@ -12,7 +12,7 @@ namespace Collision
 		{
 			if (CircleCircleCollision(mainBall.pos, mainBall.radius, balls[i].pos, balls[i].radius))
 			{
-				cout << "Colision" << endl;
+				cout << "Colision between Main Ball and ball " << i << "!" << endl;
 			}
 		}
 
@@ -20,9 +20,10 @@ namespace Collision
 		{
 			for (int j = 0; j < maxBalls; j++)
 			{
-				if (CircleCircleCollision(balls[i].pos, balls[i].radius, balls[j].pos, balls[j].radius))
+
+				if (CircleCircleCollision(balls[i].pos, balls[i].radius, balls[j].pos, balls[j].radius) && i != j)
 				{
-					cout << "Colision" << endl;
+					cout << "Colision between ball " << i << " and ball " << j << "!" << endl;
 				}
 			}
 		}
