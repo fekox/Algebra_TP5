@@ -53,6 +53,8 @@ Ball CreateBall()
 
 	mainBall.radius = 20;
 
+	mainBall.isMoving = false;
+
 	mainBall.color = WHITE;
 
 	return mainBall;
@@ -65,7 +67,8 @@ void HandleBallBallBounce(Ball& ball1, Ball& ball2) {
 	cout << "Collision angle: " << angle << endl;
 }
 
-void ShootBall(Ball& ball, Vector2 target) {
+void ShootBall(Ball& ball, Vector2 target) 
+{
 	Vector2 vectorDir = Utils::GetTargetVector(ball.pos, target);
 	Vector2 normalizedDir;
 	normalizedDir.x = (vectorDir.x / Utils::Modulo(vectorDir));
@@ -94,14 +97,68 @@ void ShootBall(Ball& ball, Vector2 target) {
 	{
 		ball.acceleration.y = -6.0f;
 	}
-
-	cout << "X: " << ball.acceleration.x << endl;
-	cout << "Y: " << ball.acceleration.x << endl;
 }
 
-void UpdateBall(Ball& ball) {
+void UpdateBall(Ball& ball) 
+{
 	Move(ball);
 	HandleBounce(ball);
+	ReduceSpeed(ball);
+}
+
+void ReduceSpeed(Ball& ball)
+{
+	float friction = .99f;
+
+	if (ball.isMoving == true)
+	{
+		if (ball.acceleration.x > 0)
+		{
+			ball.acceleration.x *= friction;
+
+			if (ball.acceleration.x == 0)
+			{
+				ball.acceleration.x = 0;
+				ball.isMoving = false;
+			}
+		}
+
+		if (ball.acceleration.y > 0)
+		{
+			ball.acceleration.y *= friction;
+
+			if (ball.acceleration.y == 0)
+			{
+				ball.acceleration.y = 0;
+				ball.isMoving = false;
+			}
+		}
+
+		if (ball.acceleration.x < 0)
+		{
+			ball.acceleration.x *= friction;
+
+			if (ball.acceleration.x == 0)
+			{
+				ball.acceleration.x = 0;
+				ball.isMoving = false;
+			}
+		}
+
+		if (ball.acceleration.y < 0)
+		{
+			ball.acceleration.y *= friction;
+
+			if (ball.acceleration.y == 0)
+			{
+				ball.acceleration.y = 0;
+				ball.isMoving = false;
+			}
+		}
+	}
+
+	cout << "Ball aceleration X: " << ball.acceleration.x << endl;
+	cout << "Ball aceleration Y: " << ball.acceleration.y << endl;
 }
 
 void DrawBall(Ball mainBall)

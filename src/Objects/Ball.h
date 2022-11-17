@@ -9,6 +9,8 @@ struct Ball
 
 	float radius;
 
+	bool isMoving;
+
 	Color color;
 };
 
@@ -19,5 +21,7 @@ void HandleBallBallBounce(Ball& ball1, Ball& ball2);
 void ShootBall(Ball& ball, Vector2 target);
 
 void UpdateBall(Ball& ball);
+
+void ReduceSpeed(Ball& ball);
 
 void DrawBall(Ball mainBall);
