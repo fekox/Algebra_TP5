@@ -108,7 +108,7 @@ void UpdateBall(Ball& ball)
 
 void ReduceSpeed(Ball& ball)
 {
-	float friction = .99f;
+	float friction = .97f;
 
 	if (ball.isMoving == true)
 	{
