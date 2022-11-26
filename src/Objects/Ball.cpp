@@ -11,31 +11,52 @@ using namespace std;
 void Move(Ball& ball);
 void HandleBounce(Ball& ball);
 
+const float tableFriction = 0.2f;
+const float gravity = 9.8f;
+const float airDensity = 1.225f;
+const float constantAirFriction = 0.000000667f;
+const int radius = 18;
+const float mass = 156;
+const float friction = tableFriction * (mass * gravity);
+const float airFriction = constantAirFriction * 0.5f * airDensity * (radius * radius) / 4;
+
 // --
 
 extern Rectangle Table;
 
-void Move(Ball& ball) {
-	ball.pos.x += (ball.acceleration.x * GetFrameTime()) * 200.0f;
-	ball.pos.y += (ball.acceleration.y * GetFrameTime()) * 200.0f;
+void Move(Ball& ball) 
+{
+	ball.pos.x += ball.velocity.x * GetFrameTime();
+	ball.pos.y += ball.velocity.y * GetFrameTime();
+
+
+	if (fabs(ball.velocity.x * ball.velocity.x + ball.velocity.y * ball.velocity.y) < 1)
+	{
+		ball.velocity = { 0,0 };
+		ball.acceleration = { 0,0 };
+	}
 }
 
 void HandleBounce(Ball& ball) {
-	if (ball.pos.x - ball.radius <= Table.x) {
+	if (ball.pos.x - ball.radius <= Table.x) 
+	{
 		ball.pos.x = ball.radius + Table.x + 1;
-		ball.acceleration.x = -ball.acceleration.x;
+		ball.velocity.x = -ball.velocity.x / 2;
 	}
-	if (ball.pos.x + ball.radius >= Table.x + Table.width) {
+	if (ball.pos.x + ball.radius >= Table.x + Table.width) 
+	{
 		ball.pos.x = Table.x + Table.width - ball.radius - 1;
-		ball.acceleration.x = -ball.acceleration.x;
+		ball.velocity.x = -ball.velocity.x / 2;
 	}
-	if (ball.pos.y - ball.radius <= Table.y) {
+	if (ball.pos.y - ball.radius <= Table.y) 
+	{
 		ball.pos.y = ball.radius + Table.y + 1;
-		ball.acceleration.y = -ball.acceleration.y;
+		ball.velocity.y = -ball.velocity.y / 2;
 	}
-	if (ball.pos.y + ball.radius >= Table.y + Table.height) {
+	if (ball.pos.y + ball.radius >= Table.y + Table.height) 
+	{
 		ball.pos.y = Table.y + Table.height - ball.radius - 1;
-		ball.acceleration.y = -ball.acceleration.y;
+		ball.velocity.y = -ball.velocity.y / 2;
 	}
 }
 
@@ -50,6 +71,9 @@ Ball CreateBall()
 
 	mainBall.acceleration.x = 0;
 	mainBall.acceleration.y = 0;
+
+	mainBall.velocity.x = 0;
+	mainBall.velocity.y = 0;
 
 	mainBall.radius = 20;
 
@@ -67,98 +91,27 @@ void HandleBallBallBounce(Ball& ball1, Ball& ball2) {
 	cout << "Collision angle: " << angle << endl;
 }
 
-void ShootBall(Ball& ball, Vector2 target) 
+void ShootBall(Ball& ball) 
 {
-	Vector2 vectorDir = Utils::GetTargetVector(ball.pos, target);
-	Vector2 normalizedDir;
-	normalizedDir.x = (vectorDir.x / Utils::Modulo(vectorDir));
-	normalizedDir.y = (vectorDir.y / Utils::Modulo(vectorDir));
-
-	ball.acceleration.x += (normalizedDir.x * GetFrameTime()) * Utils::GetDistance(ball.pos, target);
-	ball.acceleration.y += (normalizedDir.y * GetFrameTime()) * Utils::GetDistance(ball.pos, target);
-	cout << "shot\n";
-
-	if (ball.acceleration.x > 6.0f)
+	Vector2 forceOfHit = { (ball.pos.x - GetMousePosition().x) * 2,(ball.pos.y - GetMousePosition().y) * 2}; //La fuerza es el doble de la diferencia entre la posición del mouse y la pelota
+	if (forceOfHit.x > 1280 || forceOfHit.y > 720)
 	{
-		ball.acceleration.x = 6.0f;
+		forceOfHit = { 1280,720 };
 	}
-
-	if (ball.acceleration.y > 6.0f)
-	{
-		ball.acceleration.y = 6.0f;
-	}
-
-	if (ball.acceleration.x < -6.0f)
-	{
-		ball.acceleration.x = -6.0f;
-	}
-
-	if (ball.acceleration.y < -6.0f)
-	{
-		ball.acceleration.y = -6.0f;
-	}
+	ball.velocity = forceOfHit;
 }
 
 void UpdateBall(Ball& ball) 
 {
+	ReduceSpeed(ball);
 	Move(ball);
 	HandleBounce(ball);
-	ReduceSpeed(ball);
 }
 
 void ReduceSpeed(Ball& ball)
 {
-	float friction = .97f;
-
-	if (ball.isMoving == true)
-	{
-		if (ball.acceleration.x > 0)
-		{
-			ball.acceleration.x *= friction;
-
-			if (ball.acceleration.x == 0)
-			{
-				ball.acceleration.x = 0;
-				ball.isMoving = false;
-			}
-		}
-
-		if (ball.acceleration.y > 0)
-		{
-			ball.acceleration.y *= friction;
-
-			if (ball.acceleration.y == 0)
-			{
-				ball.acceleration.y = 0;
-				ball.isMoving = false;
-			}
-		}
-
-		if (ball.acceleration.x < 0)
-		{
-			ball.acceleration.x *= friction;
-
-			if (ball.acceleration.x == 0)
-			{
-				ball.acceleration.x = 0;
-				ball.isMoving = false;
-			}
-		}
-
-		if (ball.acceleration.y < 0)
-		{
-			ball.acceleration.y *= friction;
-
-			if (ball.acceleration.y == 0)
-			{
-				ball.acceleration.y = 0;
-				ball.isMoving = false;
-			}
-		}
-	}
-
-	cout << "Ball aceleration X: " << ball.acceleration.x << endl;
-	cout << "Ball aceleration Y: " << ball.acceleration.y << endl;
+	ball.acceleration = { -(ball.velocity.x * 0.8f + friction * GetFrameTime() + airFriction * GetFrameTime()), -(ball.velocity.y * 0.8f + friction * GetFrameTime() + airFriction * GetFrameTime()) };
+	ball.velocity = { ball.velocity.x + ball.acceleration.x * GetFrameTime(), ball.velocity.y + ball.acceleration.y * GetFrameTime() };
 }
 
 void DrawBall(Ball mainBall)

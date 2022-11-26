@@ -6,8 +6,10 @@ namespace Collision
 {
 	using namespace std;
 
+
 	void BallCollision(const int maxBalls, Ball mainBall, Ball balls[])
 	{
+
 		for (int i = 0; i < maxBalls; i++)
 		{
 			if (CircleCircleCollision(mainBall.pos, mainBall.radius, balls[i].pos, balls[i].radius))
