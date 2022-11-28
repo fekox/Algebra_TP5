@@ -10,23 +10,11 @@ namespace Collision
 	using namespace std;
 
 
-	void BallCollision(const int maxBalls, Ball mainBall, Ball balls[])
+	void BallCollision(const int maxBalls, Ball balls[])
 	{
-		cout << mainBall.acceleration.x << endl;
 		// Chequea la colicion de cada bola
 		for (int i = 0; i < maxBalls; i++)
 		{
-			// La colision entre la bola blanca
-			if (CircleCircleCollision(mainBall.pos, mainBall.radius, balls[i].pos, balls[i].radius))
-			{
-				float dis = sqrtf(powf(mainBall.pos.x - balls[i].pos.x, 2) + powf(mainBall.pos.y - balls[i].pos.y, 2));
-				float overlap = 0.5f * (dis - mainBall.radius * 2);
-				mainBall.pos = { mainBall.pos.x - overlap * (mainBall.pos.x - balls[i].pos.x) / dis, mainBall.pos.y - overlap * (mainBall.pos.y - balls[i].pos.y) / dis };
-
-				balls[i].pos = { balls[i].pos.x + overlap * (mainBall.pos.x - balls[i].pos.x) / dis, balls[i].pos.y + overlap * (mainBall.pos.y - balls[i].pos.y) / dis };
-				HandleBallBallBounce(balls[i], mainBall);
-			}
-
 			// La colicion entre las misma bolas
 			for (int j = 0; j < maxBalls; j++)
 			{
@@ -48,11 +36,6 @@ namespace Collision
 				if (CircleCircleCollision(Holes[j].pos, Holes[j].Radius - 10, balls[i].pos, balls[i].radius))
 				{
 					balls[i].isActive = false;
-				}
-
-				if (CircleCircleCollision(Holes[j].pos, Holes[j].Radius - 10, mainBall.pos, mainBall.radius))
-				{
-					mainBall.isActive = false;
 				}
 			}
 		}

@@ -14,7 +14,7 @@ int screenHeight = 768;
 Ball mainBall;
 
 //Other Balls
-const int maxBalls = 6;
+const int maxBalls = 7;
 Ball balls[maxBalls];
 
 void PlayGame()
@@ -31,11 +31,6 @@ void Init()
 	initTable();
 	
 	//White Ball
-	mainBall = CreateBall();
-	mainBall.pos.x = static_cast<float>(screenWidth / 6);
-	mainBall.pos.y = static_cast<float>(screenHeight / 2);
-	mainBall.mass = 130;
-	mainBall.isActive = true;
 
 	//Other Balls
 	for (int i = 0; i < maxBalls; i++)
@@ -43,11 +38,11 @@ void Init()
 		balls[i] = CreateBall();
 	}
 
-	balls[0].pos.x = static_cast<float>(screenWidth / 1.8);
-	balls[0].pos.y = static_cast<float>(screenHeight / 2);
-	balls[0].color = RED;
-	balls[0].mass = 155;
-	balls[0].isActive = true;
+	balls[6].pos.x = static_cast<float>(screenWidth / 1.8);
+	balls[6].pos.y = static_cast<float>(screenHeight / 2);
+	balls[6].color = RED;
+	balls[6].mass = 155;
+	balls[6].isActive = true;
 	//
 	balls[1].pos.x = static_cast<float>(screenWidth / 1.65);
 	balls[1].pos.y = static_cast<float>(screenHeight / 2.2);
@@ -79,16 +74,22 @@ void Init()
 	balls[5].mass = 155;
 	balls[5].isActive = true;
 
+	balls[0] = CreateBall();
+	balls[0].pos.x = static_cast<float>(screenWidth / 6);
+	balls[0].pos.y = static_cast<float>(screenHeight / 2);
+	balls[0].color = WHITE;
+	balls[0].mass = 130;
+	balls[0].isActive = true;
+
 }
 
 void Update()
 {
 	while (!WindowShouldClose())
 	{
-		Input::Manage(mainBall);
+		Input::Manage(balls[0]);
 
-		Collision::BallCollision(maxBalls, mainBall, balls);
-
+		Collision::BallCollision(maxBalls, balls);
 
 		for (int i = 0; i < maxBalls; i++)
 		{
@@ -97,17 +98,13 @@ void Update()
 				UpdateBall(balls[i]);
 			}
 		}
-
-		if (!mainBall.isActive)
+		if (!balls[0].isActive)
 		{
-			mainBall.pos.x = static_cast<float>(screenWidth / 6);
-			mainBall.pos.y = static_cast<float>(screenHeight / 2);
-			//mainBall.isActive = true;
-		}
-		else
-		{
-			UpdateBall(mainBall);
-
+			balls[0].pos.x = static_cast<float>(screenWidth / 6);
+			balls[0].pos.y = static_cast<float>(screenHeight / 2);
+			balls[0].acceleration = { 0, 0 };
+			balls[0].velocity = { 0, 0 };
+			balls[0].isActive = true;
 		}
 
 		Draw();
@@ -121,9 +118,6 @@ void Draw()
 	BeginDrawing();
 	ClearBackground(BLANK);
 	DrawTable();
-
-	//White Ball
-	DrawBall(mainBall);
 
 	//Other Balls
 	for (int i = 0; i < maxBalls; i++)

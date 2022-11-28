@@ -122,7 +122,7 @@ void UpdateBall(Ball& ball)
 
 void ReduceSpeed(Ball& ball)
 {
-	const float friction = 0.2f * (ball.mass * 9.8f);
+	float friction = 0.2f * (ball.mass * 9.8f);
 
 	ball.acceleration = { -(ball.velocity.x + friction * Utils::NormGetFrameTime()), -(ball.velocity.y + friction * Utils::NormGetFrameTime()) };
 	ball.velocity = { ball.velocity.x + ball.acceleration.x * Utils::NormGetFrameTime(), ball.velocity.y + ball.acceleration.y * Utils::NormGetFrameTime() };
