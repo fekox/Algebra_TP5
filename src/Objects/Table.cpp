@@ -17,7 +17,7 @@ void initTable()
 
 	for (int i = 0; i < maxHoles; i++)
 	{
-		Holes[i].Radius = 25;
+		Holes[i].Radius = 35;
 		if (i < 3)
 		{
 			Holes[i].pos.x = Table.x + (i * Table.width / 2);

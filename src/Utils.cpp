@@ -38,4 +38,13 @@ namespace Utils {
 		};
 		return targetVector;
 	}
+
+	float NormGetFrameTime()
+	{
+		float time = GetFrameTime();
+
+		if (time >= 0.017f) { return 0; }
+		else { return time; }
+
+	}
 }
