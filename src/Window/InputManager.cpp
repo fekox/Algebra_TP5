@@ -7,6 +7,10 @@ namespace Input {
 			GetMouseY() < GetScreenHeight() && GetMouseY() > 0)
 		{
 			ShootBall(whiteBall);
+<<<<<<< HEAD
+=======
+			whiteBall.isMoving = true;
+>>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
 
 		}
 	}

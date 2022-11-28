@@ -15,6 +15,13 @@ const float tableFriction = 0.2f;
 const float gravity = 9.8f;
 const float airDensity = 1.225f;
 const float constantAirFriction = 0.000000667f;
+<<<<<<< HEAD
+=======
+const int radius = 18;
+const float mass = 156;
+const float friction = tableFriction * (mass * gravity);
+const float airFriction = constantAirFriction * 0.5f * airDensity * (radius * radius) / 4;
+>>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
 
 // --
 
@@ -22,8 +29,13 @@ extern Rectangle Table;
 
 void Move(Ball& ball) 
 {
+<<<<<<< HEAD
 	ball.pos.x += ball.velocity.x * Utils::NormGetFrameTime();
 	ball.pos.y += ball.velocity.y * Utils::NormGetFrameTime();
+=======
+	ball.pos.x += ball.velocity.x * GetFrameTime();
+	ball.pos.y += ball.velocity.y * GetFrameTime();
+>>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
 
 
 	if (fabs(ball.velocity.x * ball.velocity.x + ball.velocity.y * ball.velocity.y) < 1)
@@ -70,6 +82,11 @@ Ball CreateBall()
 
 	mainBall.velocity.x = 0;
 	mainBall.velocity.y = 0;
+<<<<<<< HEAD
+=======
+
+	mainBall.radius = 20;
+>>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
 
 	mainBall.radius = 20;
 	mainBall.mass = 155;
@@ -104,11 +121,18 @@ void HandleBallBallBounce(Ball& ball1, Ball& ball2)
 
 void ShootBall(Ball& ball) 
 {
+<<<<<<< HEAD
 	//La fuerza es el doble de la diferencia entre la posición del mouse y la pelota
 	Vector2 forceOfHit = { (ball.pos.x - GetMousePosition().x) * 2,(ball.pos.y - GetMousePosition().y) * 2}; 
 	if (forceOfHit.x > GetScreenWidth() || forceOfHit.y > GetScreenHeight())
 	{
 		forceOfHit = { (float)GetScreenWidth(), (float)GetScreenHeight()};
+=======
+	Vector2 forceOfHit = { (ball.pos.x - GetMousePosition().x) * 2,(ball.pos.y - GetMousePosition().y) * 2}; //La fuerza es el doble de la diferencia entre la posición del mouse y la pelota
+	if (forceOfHit.x > 1280 || forceOfHit.y > 720)
+	{
+		forceOfHit = { 1280,720 };
+>>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
 	}
 	ball.velocity = forceOfHit;
 }
@@ -122,11 +146,16 @@ void UpdateBall(Ball& ball)
 
 void ReduceSpeed(Ball& ball)
 {
+<<<<<<< HEAD
 	const float friction = 0.2f * (ball.mass * 9.8f);
 
 	ball.acceleration = { -(ball.velocity.x + friction * Utils::NormGetFrameTime()), -(ball.velocity.y + friction * Utils::NormGetFrameTime()) };
 	ball.velocity = { ball.velocity.x + ball.acceleration.x * Utils::NormGetFrameTime(), ball.velocity.y + ball.acceleration.y * Utils::NormGetFrameTime() };
 
+=======
+	ball.acceleration = { -(ball.velocity.x * 0.8f + friction * GetFrameTime() + airFriction * GetFrameTime()), -(ball.velocity.y * 0.8f + friction * GetFrameTime() + airFriction * GetFrameTime()) };
+	ball.velocity = { ball.velocity.x + ball.acceleration.x * GetFrameTime(), ball.velocity.y + ball.acceleration.y * GetFrameTime() };
+>>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
 }
 
 void DrawBall(Ball mainBall)

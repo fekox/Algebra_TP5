@@ -12,8 +12,12 @@ namespace Collision
 
 	void BallCollision(const int maxBalls, Ball mainBall, Ball balls[])
 	{
+<<<<<<< HEAD
 		cout << mainBall.acceleration.x << endl;
 		// Chequea la colicion de cada bola
+=======
+
+>>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
 		for (int i = 0; i < maxBalls; i++)
 		{
 			// La colision entre la bola blanca

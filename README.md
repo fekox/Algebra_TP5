@@ -10,4 +10,8 @@ Group Members:
 
 4 - Mauricio Salazar
 
+<<<<<<< HEAD
 5 - Lucas Ivan Pich
+=======
+5 - Lucas Ivan Pich
+>>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
