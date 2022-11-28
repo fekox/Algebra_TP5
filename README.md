@@ -8,7 +8,8 @@ Group Members:
 
 3 - Tomas Porte Petit
 
-4 - Mauricio Salazar
+4 - Salazar
+https://github.com/Mauvemau
 
 <<<<<<< HEAD
 5 - Lucas Ivan Pich
