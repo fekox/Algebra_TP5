@@ -12,11 +12,8 @@ struct Ball
 	float radius;
 	float mass = 156;
 
-<<<<<<< HEAD
 	bool isActive;
-=======
 	bool isMoving;
->>>>>>> 37d217c17ab4a875a5102a21ed2508a7e9fc58bf
 	bool onTable;
 
 	Color color;
