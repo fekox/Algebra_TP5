@@ -14,7 +14,6 @@ namespace Collision
 	{
 		cout << mainBall.acceleration.x << endl;
 		// Chequea la colicion de cada bola
-
 		for (int i = 0; i < maxBalls; i++)
 		{
 			// La colision entre la bola blanca

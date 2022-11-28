@@ -13,7 +13,6 @@ struct Ball
 	float mass = 156;
 
 	bool isActive;
-	bool isMoving;
 	bool onTable;
 
 	Color color;

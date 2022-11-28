@@ -16,23 +16,15 @@ const float gravity = 9.8f;
 const float airDensity = 1.225f;
 const float constantAirFriction = 0.000000667f;
 
-const int radius = 18;
-const float mass = 156;
-const float friction = tableFriction * (mass * gravity);
-const float airFriction = constantAirFriction * 0.5f * airDensity * (radius * radius) / 4;
-
 // --
 
 extern Rectangle Table;
 
 void Move(Ball& ball) 
 {
-
 	ball.pos.x += ball.velocity.x * Utils::NormGetFrameTime();
 	ball.pos.y += ball.velocity.y * Utils::NormGetFrameTime();
 
-	ball.pos.x += ball.velocity.x * Utils::NormGetFrameTime();
-	ball.pos.y += ball.velocity.y * Utils::NormGetFrameTime();
 
 	if (fabs(ball.velocity.x * ball.velocity.x + ball.velocity.y * ball.velocity.y) < 1)
 	{
@@ -78,7 +70,7 @@ Ball CreateBall()
 
 	mainBall.velocity.x = 0;
 	mainBall.velocity.y = 0;
-	mainBall.radius = 20;
+
 	mainBall.radius = 20;
 	mainBall.mass = 155;
 
@@ -116,7 +108,7 @@ void ShootBall(Ball& ball)
 	Vector2 forceOfHit = { (ball.pos.x - GetMousePosition().x) * 2,(ball.pos.y - GetMousePosition().y) * 2}; 
 	if (forceOfHit.x > GetScreenWidth() || forceOfHit.y > GetScreenHeight())
 	{
-		forceOfHit = { (float)GetScreenWidth(), (float)GetScreenHeight() };
+		forceOfHit = { (float)GetScreenWidth(), (float)GetScreenHeight()};
 	}
 	ball.velocity = forceOfHit;
 }
@@ -135,8 +127,6 @@ void ReduceSpeed(Ball& ball)
 	ball.acceleration = { -(ball.velocity.x + friction * Utils::NormGetFrameTime()), -(ball.velocity.y + friction * Utils::NormGetFrameTime()) };
 	ball.velocity = { ball.velocity.x + ball.acceleration.x * Utils::NormGetFrameTime(), ball.velocity.y + ball.acceleration.y * Utils::NormGetFrameTime() };
 
-	ball.acceleration = { -(ball.velocity.x * 0.8f + friction * GetFrameTime() + airFriction * GetFrameTime()), -(ball.velocity.y * 0.8f + friction * GetFrameTime() + airFriction * GetFrameTime()) };
-	ball.velocity = { ball.velocity.x + ball.acceleration.x * GetFrameTime(), ball.velocity.y + ball.acceleration.y * GetFrameTime() };
 }
 
 void DrawBall(Ball mainBall)
