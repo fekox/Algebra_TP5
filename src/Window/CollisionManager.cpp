@@ -5,10 +5,10 @@
 
 const int maxHoles = 6;
 extern Utils::Circle Holes[maxHoles];
+
 namespace Collision 
 {
 	using namespace std;
-
 
 	void BallCollision(const int maxBalls, Ball balls[])
 	{

@@ -1,12 +1,8 @@
 #include "Objects/Ball.h"
-
 #include "Utils.h"
-
 #include <iostream>
 
 using namespace std;
-
-// Private
 
 void Move(Ball& ball);
 void HandleBounce(Ball& ball);
@@ -15,8 +11,6 @@ const float tableFriction = 0.2f;
 const float gravity = 9.8f;
 const float airDensity = 1.225f;
 const float constantAirFriction = 0.000000667f;
-
-// --
 
 extern Rectangle Table;
 
@@ -33,22 +27,26 @@ void Move(Ball& ball)
 	}
 }
 
-void HandleBounce(Ball& ball) {
+void HandleBounce(Ball& ball) //Colisiones con los bordes de la mesa
+{
 	if (ball.pos.x - ball.radius <= Table.x) 
 	{
 		ball.pos.x = ball.radius + Table.x + 1;
 		ball.velocity.x = -ball.velocity.x / 2;
 	}
+
 	if (ball.pos.x + ball.radius >= Table.x + Table.width) 
 	{
 		ball.pos.x = Table.x + Table.width - ball.radius - 1;
 		ball.velocity.x = -ball.velocity.x / 2;
 	}
+
 	if (ball.pos.y - ball.radius <= Table.y) 
 	{
 		ball.pos.y = ball.radius + Table.y + 1;
 		ball.velocity.y = -ball.velocity.y / 2;
 	}
+
 	if (ball.pos.y + ball.radius >= Table.y + Table.height) 
 	{
 		ball.pos.y = Table.y + Table.height - ball.radius - 1;
@@ -56,9 +54,7 @@ void HandleBounce(Ball& ball) {
 	}
 }
 
-// Public
-
-Ball CreateBall()
+Ball CreateBall() //Creador de pelotas
 {
 	Ball mainBall;
 
@@ -79,7 +75,7 @@ Ball CreateBall()
 	return mainBall;
 }
 
-void HandleBallBallBounce(Ball& ball1, Ball& ball2) 
+void HandleBallBallBounce(Ball& ball1, Ball& ball2) //Para que una bola le tranfiera su velocidad a la otra si colicionan
 {
 	float dis = sqrtf(powf(ball2.pos.x - ball1.pos.x, 2) + powf(ball2.pos.y - ball1.pos.y, 2));
 
@@ -120,7 +116,7 @@ void UpdateBall(Ball& ball)
 	HandleBounce(ball);
 }
 
-void ReduceSpeed(Ball& ball)
+void ReduceSpeed(Ball& ball) //Reduce la velocidad de la pelota
 {
 	float friction = 0.2f * (ball.mass * 9.8f);
 
@@ -129,7 +125,7 @@ void ReduceSpeed(Ball& ball)
 
 }
 
-void DrawBall(Ball mainBall)
+void DrawBall(Ball mainBall) //Dibuja la pelota.
 {
 	DrawCircle(static_cast<int>(mainBall.pos.x), static_cast<int>(mainBall.pos.y), mainBall.radius, mainBall.color);
 }

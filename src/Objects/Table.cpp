@@ -34,6 +34,7 @@ void initTable()
 void DrawTable()
 {
 	DrawRectangle(static_cast<int>(Table.x), static_cast<int>(Table.y), static_cast<int>(Table.width), static_cast<int>(Table.height), DARKGREEN);
+
 	for (int i = 0; i < maxHoles; i++)
 	{
 		DrawCircle(static_cast<int>(Holes[i].pos.x), static_cast<int>(Holes[i].pos.y), Holes[i].Radius, BROWN);

@@ -6,14 +6,11 @@
 #include "InputManager.h"
 #include "CollisionManager.h"
 
-//Window
+//Ventana
 int screenWidth = 1024;
 int screenHeight = 768;
 
-//WhiteBall
-Ball mainBall;
-
-//Other Balls
+//Pelotas
 const int maxBalls = 16;
 Ball balls[maxBalls];
 
@@ -25,14 +22,10 @@ void PlayGame()
 
 void Init()
 {
-	//Window
 	SetConfigFlags(FLAG_WINDOW_ALWAYS_RUN);
 	InitWindow(screenWidth, screenHeight, "Algebra TP5");
 	initTable();
-	
-	//White Ball
 
-	//Other Balls
 	for (int i = 0; i < maxBalls; i++)
 	{
 		balls[i] = CreateBall();
@@ -172,7 +165,6 @@ void Draw()
 	ClearBackground(BLANK);
 	DrawTable();
 
-	//Other Balls
 	for (int i = 0; i < maxBalls; i++)
 	{
 		if (balls[i].isActive)
